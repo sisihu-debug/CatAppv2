@@ -22,6 +22,8 @@ import com.google.gson.Gson;
 
 import java.net.HttpURLConnection;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 
 /**
@@ -45,39 +47,54 @@ public class SearchFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_search, container, false);
+
+        //Initialise the adapter
+        final CatAdapter catAdapter = new CatAdapter();
+
+        //Initialise the Recycler view and bind adapter
+
         recyclerView = view.findViewById(R.id.rv_main);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext());
+        recyclerView.setAdapter(catAdapter);
+
+        final LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext());
         recyclerView.setLayoutManager(layoutManager);
 
-        final CatAdapter catAdapter = new CatAdapter();
+
+//      create request queue
 
         final RequestQueue requestQueue =  Volley.newRequestQueue(getActivity());
 
-//        HttpClient httpclient = new DefaultHttpClient();
-//        HttpGet request = new HttpGet(theUrl);
-//        request.addHeader("x-api-key", apiKey);
-//        HttpResponse response = httpclient.execute(request);
+//
 
-        String url = "https://thecatapi.com/v1/breeds";
+        String url = "https://api.thecatapi.com/v1/breeds/search?q=beng";
 
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Gson gson = new Gson();
-                CatMeta catMeta = gson.fromJson(response,CatMeta.class);
-                ArrayList<Cat> gsonCats = catMeta.getCats();
 
-                System.out.println(gsonCats.toString());
 
-                //recyclerView = view.findViewById(R.id.rv_main);
+//              Attempt 1:
+
+//                CatMeta[] catMeta = gson.fromJson(response,CatMeta[].class);
+//
+//                List<CatMeta> catsList = Arrays.asList(catMeta);
+//
+//                ArrayList<Cat> catsArrayList = new ArrayList<Cat>(catsList);
+//
+//
+//
+//                catAdapter.setData();
+
+                Cat[] catMeta = gson.fromJson(response,Cat[].class);
+
+                List<Cat> catsList = Arrays.asList(catMeta);
+
+                ArrayList<Cat> catsArrayList = new ArrayList<Cat>(catsList);
+
+                catAdapter.setData(catsArrayList);
+
                 recyclerView.setAdapter(catAdapter);
-
-
-
-
-
-
-
 
 
             }

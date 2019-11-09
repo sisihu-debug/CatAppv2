@@ -4,6 +4,10 @@ import java.util.ArrayList;
 
 public class CatMeta {
 
+    public CatMeta(CatMeta results){
+        this.cats = cats;
+    }
+
     private ArrayList<Cat> cats;
 
     public ArrayList<Cat> getCats() {

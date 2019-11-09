@@ -13,13 +13,18 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.bumptech.glide.Glide;
 import com.example.catappv2.Cat;
 
 public class CatAdapter extends RecyclerView.Adapter<CatAdapter.CatViewHolder> {
 
-    ArrayList<Cat> catsToAdapt = new ArrayList<>();
+    List<Cat> catsToAdapt = new ArrayList<>();
+
+    public void setData(List<Cat> catsToAdapt){
+        this.catsToAdapt = catsToAdapt;
+    }
 
     @NonNull
     @Override
