@@ -7,9 +7,12 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -34,6 +37,10 @@ public class SearchFragment extends Fragment {
     private RecyclerView recyclerView;
     View view;
     RecyclerView.LayoutManager layoutManager;
+    EditText searchEditView;
+
+    String searchText;
+
 
 
 
@@ -45,6 +52,10 @@ public class SearchFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+
+
+
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_search, container, false);
 
@@ -53,25 +64,44 @@ public class SearchFragment extends Fragment {
 
         //Initialise the Recycler view and bind adapter
 
+        searchEditView = view.findViewById(R.id.searchEditText);
         recyclerView = view.findViewById(R.id.rv_main);
+
+
         recyclerView.setAdapter(catAdapter);
 
         final LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext());
         recyclerView.setLayoutManager(layoutManager);
 
+        // Implement search on text reader
 
-//      create request queue
+        searchEditView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-        final RequestQueue requestQueue =  Volley.newRequestQueue(getActivity());
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+
+                searchText = s.toString();
+
+                final RequestQueue requestQueue =  Volley.newRequestQueue(getActivity());
 
 //
 
-        String url = "https://api.thecatapi.com/v1/breeds/search?q=beng";
+                String url = "https://api.thecatapi.com/v1/breeds/search?q="+searchText;
 
-        Response.Listener<String> responseListener = new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Gson gson = new Gson();
+                Response.Listener<String> responseListener = new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Gson gson = new Gson();
 
 
 //              Attempt 1:
@@ -86,34 +116,108 @@ public class SearchFragment extends Fragment {
 //
 //                catAdapter.setData();
 
-                Cat[] catMeta = gson.fromJson(response,Cat[].class);
+                        Cat[] catMeta = gson.fromJson(response,Cat[].class);
 
-                List<Cat> catsList = Arrays.asList(catMeta);
+                        List<Cat> catsList = Arrays.asList(catMeta);
 
-                ArrayList<Cat> catsArrayList = new ArrayList<Cat>(catsList);
+                        ArrayList<Cat> catsArrayList = new ArrayList<Cat>(catsList);
 
-                catAdapter.setData(catsArrayList);
+                        catAdapter.setData(catsArrayList);
 
-                recyclerView.setAdapter(catAdapter);
+                        recyclerView.setAdapter(catAdapter);
+
+
+                    }
+
+                };
+
+                Response.ErrorListener errorListener = new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        System.out.println("GSON VOLLEY ERROR!!!");
+                    }
+                };
+
+                StringRequest stringRequest = new StringRequest(Request.Method.GET, url, responseListener, errorListener);
+                requestQueue.add(stringRequest);
+
+
+
+                filter(s.toString());
 
 
             }
+        });
 
-            };
 
-        Response.ErrorListener errorListener = new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                System.out.println("GSON VOLLEY ERROR!!!");
-            }
-        };
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, responseListener, errorListener);
-        requestQueue.add(stringRequest);
+//
+//      create request queue
 
+//        final RequestQueue requestQueue =  Volley.newRequestQueue(getActivity());
+//
+////
+//
+//        String url = "https://api.thecatapi.com/v1/breeds/search?q="+searchText;
+//
+//        Response.Listener<String> responseListener = new Response.Listener<String>() {
+//            @Override
+//            public void onResponse(String response) {
+//                Gson gson = new Gson();
+//
+//
+////              Attempt 1:
+//
+////                CatMeta[] catMeta = gson.fromJson(response,CatMeta[].class);
+////
+////                List<CatMeta> catsList = Arrays.asList(catMeta);
+////
+////                ArrayList<Cat> catsArrayList = new ArrayList<Cat>(catsList);
+////
+////
+////
+////                catAdapter.setData();
+//
+//                Cat[] catMeta = gson.fromJson(response,Cat[].class);
+//
+//                List<Cat> catsList = Arrays.asList(catMeta);
+//
+//                ArrayList<Cat> catsArrayList = new ArrayList<Cat>(catsList);
+//
+//                catAdapter.setData(catsArrayList);
+//
+//                recyclerView.setAdapter(catAdapter);
+//
+//
+//            }
+//
+//            };
+//
+//        Response.ErrorListener errorListener = new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                System.out.println("GSON VOLLEY ERROR!!!");
+//            }
+//        };
+//
+//        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, responseListener, errorListener);
+//        requestQueue.add(stringRequest);
+//
         return view;
 
 
     }
+
+    public void filter(String text){
+
+
+
+
+
+
+
+    }
+
+
 
 }

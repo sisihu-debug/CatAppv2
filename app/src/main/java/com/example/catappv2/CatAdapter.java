@@ -44,6 +44,11 @@ public class CatAdapter extends RecyclerView.Adapter<CatAdapter.CatViewHolder> {
 
         holder.nameTextView.setText(catAtPosition.getName());
 
+        //setting image
+
+//        String imageUrl = book.getBookImage();
+//        Glide.with(view.getContext()).load(imageUrl).into(coverImageView);
+
 
 
 //        holder.view.setOnClickListener(new View.OnClickListener() {
