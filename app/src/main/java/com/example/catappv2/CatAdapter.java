@@ -51,16 +51,16 @@ public class CatAdapter extends RecyclerView.Adapter<CatAdapter.CatViewHolder> {
 
 
 
-//        holder.view.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Context context = view.getContext();
-//
-//                Intent intent = new Intent(context, CatDetailActivity.class);
-//                intent.putExtra("ArticleID", catAtPosition.getId());
-//                context.startActivity(intent);
-//            }
-//        });
+        holder.view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Context context = view.getContext();
+
+                Intent intent = new Intent(context, CatDetailActivity.class);
+                intent.putExtra("id", catAtPosition.getId());
+                context.startActivity(intent);
+            }
+        });
 
 //        holder.shareImageView.setOnClickListener(new View.OnClickListener() {
 //            @Override

@@ -11,10 +11,10 @@ public class Cat {
     private String weight_imperial;
     private String life_span;
     //image
-    //description
+    private String description;
 
 
-    public Cat(String id, String name, String temperament, String wikipedia_url, String origin, int dog_friendly, String weight_imperial, String life_span) {
+    public Cat(String id, String name, String temperament, String wikipedia_url, String origin, int dog_friendly, String weight_imperial, String life_span, String description) {
         this.id = id;
         this.name = name;
         this.temperament = temperament;
@@ -23,7 +23,10 @@ public class Cat {
         this.dog_friendly = dog_friendly;
         this.weight_imperial = weight_imperial;
         this.life_span = life_span;
+        this.description = description;
     }
+
+
 
     public String getId() {
         return id;
@@ -87,5 +90,13 @@ public class Cat {
 
     public void setLife_span(String life_span) {
         this.life_span = life_span;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

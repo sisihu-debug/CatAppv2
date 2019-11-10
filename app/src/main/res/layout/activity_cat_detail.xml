@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!--    private String id;-->
+    <!--    private String name;-->
+    <!--    private String temperament;-->
+    <!--    private String wikipedia_url;-->
+    <!--    private String origin;-->
+    <!--    private int dog_friendly;-->
+    <!--    private String weight_imperial;-->
+    <!--    private String life_span;-->
+    <!-- description -->
+
+    <ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/detailName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+         />
+
+    <ImageView
+        android:id="@+id/detailPhoto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/detailDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+         />
+
+    <TextView
+        android:id="@+id/detailTemperament"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+         />
+
+    <TextView
+        android:id="@+id/detailWiki"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+         />
+
+    <TextView
+        android:id="@+id/detailOrigin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+         />
+
+    <TextView
+        android:id="@+id/detailDogFriendly"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+         />
+
+    <TextView
+        android:id="@+id/detailWeight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+         />
+
+    <TextView
+        android:id="@+id/detailLifespan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+         />
+    </LinearLayout>
+
+</ScrollView>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add to Favourite" />
+
+</LinearLayout>
+
+
