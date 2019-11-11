@@ -8,10 +8,10 @@ public class Cat {
     private String wikipedia_url;
     private String origin;
     private String dog_friendly;
-    //private String weight_imperial;
+
     public Weight weight;
     private String life_span;
-    //image
+    private String imageUrl;
     private String description;
 
 
@@ -111,5 +111,13 @@ public class Cat {
         public String getMetric() {
             return metric;
         }
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

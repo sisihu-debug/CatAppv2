@@ -2,6 +2,8 @@ package com.example.catappv2;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,6 +30,8 @@ public class CatDetailActivity extends AppCompatActivity {
     private TextView weightTextView;
     private TextView lifespanTextView;
     private TextView descriptionTextView;
+    private ImageView detailPhotoImageView;
+    private Button addToFavButton;
 
 
     @Override
@@ -43,6 +47,9 @@ public class CatDetailActivity extends AppCompatActivity {
         weightTextView = findViewById(R.id.detailWeight);
         lifespanTextView = findViewById(R.id.detailLifespan);
         descriptionTextView = findViewById(R.id.detailDescription);
+        addToFavButton = findViewById(R.id.favButton);
+        detailPhotoImageView = findViewById(R.id.detailPhoto);
+
 
         Intent intent = getIntent();
 
@@ -51,6 +58,10 @@ public class CatDetailActivity extends AppCompatActivity {
         System.out.println(catID);
 
         final RequestQueue requestQueue = Volley.newRequestQueue(this);
+
+//        String apiKey = "62b8eef7-c68c-4bd6-85bf-ee7ecfcff0c6";
+//        String url = "https://api.thecatapi.com/v1/breeds/search?api_key="+ apiKey + "breed_id="+catID;
+
 
 //
 

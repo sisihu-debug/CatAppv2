@@ -92,11 +92,13 @@ public class SearchFragment extends Fragment {
 
                 searchText = s.toString();
 
-                final RequestQueue requestQueue =  Volley.newRequestQueue(getActivity());
+                final RequestQueue requestQueue =  Volley.newRequestQueue(view.getContext());
 
 //
-
+                String apiKey = "62b8eef7-c68c-4bd6-85bf-ee7ecfcff0c6";
                 String url = "https://api.thecatapi.com/v1/breeds/search?q="+searchText;
+
+                //String url = "https://api.thecatapi.com/v1/breeds/search?api_key="+ apiKey + "breed_id="+searchText;
 
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
                     @Override
@@ -143,7 +145,7 @@ public class SearchFragment extends Fragment {
 
 
 
-                filter(s.toString());
+                //filter(s.toString());
 
 
             }
