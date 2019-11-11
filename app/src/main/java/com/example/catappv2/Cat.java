@@ -7,21 +7,22 @@ public class Cat {
     private String temperament;
     private String wikipedia_url;
     private String origin;
-    private int dog_friendly;
-    private String weight_imperial;
+    private String dog_friendly;
+    //private String weight_imperial;
+    public Weight weight;
     private String life_span;
     //image
     private String description;
 
 
-    public Cat(String id, String name, String temperament, String wikipedia_url, String origin, int dog_friendly, String weight_imperial, String life_span, String description) {
+    public Cat(String id, String name, String temperament, String wikipedia_url, String origin, String dog_friendly, Weight weight, String life_span, String description) {
         this.id = id;
         this.name = name;
         this.temperament = temperament;
         this.wikipedia_url = wikipedia_url;
         this.origin = origin;
         this.dog_friendly = dog_friendly;
-        this.weight_imperial = weight_imperial;
+        this.weight = weight;
         this.life_span = life_span;
         this.description = description;
     }
@@ -68,20 +69,20 @@ public class Cat {
         this.origin = origin;
     }
 
-    public int getDog_friendly() {
+    public String getDog_friendly() {
         return dog_friendly;
     }
 
-    public void setDog_friendly(int dog_friendly) {
+    public void setDog_friendly(String dog_friendly) {
         this.dog_friendly = dog_friendly;
     }
 
-    public String getWeight_imperial() {
-        return weight_imperial;
+    public Weight getWeight() {
+        return weight;
     }
 
-    public void setWeight_imperial(String weight_imperial) {
-        this.weight_imperial = weight_imperial;
+    public void setWeight(Weight weightl) {
+        this.weight = weight;
     }
 
     public String getLife_span() {
@@ -98,5 +99,17 @@ public class Cat {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public class Weight{
+        String metric;
+
+        public Weight(String metric) {
+            this.metric = metric;
+        }
+
+        public String getMetric() {
+            return metric;
+        }
     }
 }

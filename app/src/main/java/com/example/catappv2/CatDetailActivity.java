@@ -62,18 +62,6 @@ public class CatDetailActivity extends AppCompatActivity {
                 Gson gson = new Gson();
 
 
-//              Attempt 1:
-
-//                CatMeta[] catMeta = gson.fromJson(response,CatMeta[].class);
-//
-//                List<CatMeta> catsList = Arrays.asList(catMeta);
-//
-//                ArrayList<Cat> catsArrayList = new ArrayList<Cat>(catsList);
-//
-//
-//
-//                catAdapter.setData();
-
                 Cat[] catMeta = gson.fromJson(response, Cat[].class);
 
                 List<Cat> catsList = Arrays.asList(catMeta);
@@ -81,21 +69,26 @@ public class CatDetailActivity extends AppCompatActivity {
                 ArrayList<Cat> catsArrayList = new ArrayList<Cat>(catsList);
 
                 int latestCat = catsArrayList.size();
-                System.out.println("the size of the array is"+latestCat);
+                System.out.println("the size of the array is "+latestCat);
+                System.out.println(catsArrayList.get(latestCat-1).getName());
+                System.out.println(catsArrayList.get(latestCat-1).getTemperament());
+                System.out.println(catsArrayList.get(latestCat-1).getWikipedia_url());
+                System.out.println("weight is "+catsArrayList.get(latestCat-1).getWeight().getMetric());
+
 
                 nameTextView.setText(catsArrayList.get(latestCat-1).getName());
                 temperamentTextView.setText(catsArrayList.get(latestCat-1).getTemperament());
                 wikiTextView.setText(catsArrayList.get(latestCat-1).getWikipedia_url());
                 originTextView.setText(catsArrayList.get(latestCat-1).getOrigin());
-                //dogfriendlyTextView.setText(catsArrayList.get(0).getDog_friendly());
-                weightTextView.setText(catsArrayList.get(latestCat-1).getWeight_imperial());
+                dogfriendlyTextView.setText(catsArrayList.get(latestCat-1).getDog_friendly());
+                weightTextView.setText(catsArrayList.get(latestCat-1).getWeight().getMetric());
                 lifespanTextView.setText(catsArrayList.get(latestCat-1).getLife_span());
                 descriptionTextView.setText(catsArrayList.get(latestCat-1).getDescription());
 
 
-//            catAdapter.setData(catsArrayList);
-//
-//            recyclerView.setAdapter(catAdapter);
+
+
+                //error when it's american bobtail, american curl, american shorthair
 
 
             }
