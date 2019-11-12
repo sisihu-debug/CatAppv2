@@ -59,13 +59,16 @@ public class CatDetailActivity extends AppCompatActivity {
 
         final RequestQueue requestQueue = Volley.newRequestQueue(this);
 
-//        String apiKey = "62b8eef7-c68c-4bd6-85bf-ee7ecfcff0c6";
-//        String url = "https://api.thecatapi.com/v1/breeds/search?api_key="+ apiKey + "breed_id="+catID;
+        String apiKey = "62b8eef7-c68c-4bd6-85bf-ee7ecfcff0c6";
+        //String url = "https://api.thecatapi.com/v1/breeds/search?api_key="+ apiKey + "&breed_id="+catID;
 
+        //String url = "https://api.thecatapi.com/v1/breeds/search?api_key=62b8eef7-c68c-4bd6-85bf-ee7ecfcff0c6&breed_id=beng;
 
+        String url = "https://api.thecatapi.com/v1/images/search?api_key="+apiKey+"&breed_id="+catID;
 //
 
-        String url = "https://api.thecatapi.com/v1/breeds/search?q=" + catID;
+        //working because searching directly quotes exact match
+        //String url = "https://api.thecatapi.com/v1/breeds/search?q=" + catID;
 
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             @Override
@@ -73,33 +76,35 @@ public class CatDetailActivity extends AppCompatActivity {
                 Gson gson = new Gson();
 
 
-                Cat[] catMeta = gson.fromJson(response, Cat[].class);
+                CatMeta[] catMeta = gson.fromJson(response, CatMeta[].class);
 
-                List<Cat> catsList = Arrays.asList(catMeta);
+                List<CatMeta> catsList = Arrays.asList(catMeta);
 
-                ArrayList<Cat> catsArrayList = new ArrayList<Cat>(catsList);
+                ArrayList<CatMeta> catsArrayList = new ArrayList<CatMeta>(catsList);
+
+                CatMeta currentCatMeta = catsArrayList.get(0);
+
+                Cat currentCat = currentCatMeta.getCats().get(0);
 
                 int latestCat = catsArrayList.size();
                 System.out.println("the size of the array is "+latestCat);
-                System.out.println(catsArrayList.get(latestCat-1).getName());
-                System.out.println(catsArrayList.get(latestCat-1).getTemperament());
-                System.out.println(catsArrayList.get(latestCat-1).getWikipedia_url());
-                System.out.println("weight is "+catsArrayList.get(latestCat-1).getWeight().getMetric());
 
+                System.out.println(currentCat.getName());
+                System.out.println(currentCat.getTemperament());
 
-                nameTextView.setText(catsArrayList.get(latestCat-1).getName());
-                temperamentTextView.setText(catsArrayList.get(latestCat-1).getTemperament());
-                wikiTextView.setText(catsArrayList.get(latestCat-1).getWikipedia_url());
-                originTextView.setText(catsArrayList.get(latestCat-1).getOrigin());
-                dogfriendlyTextView.setText(catsArrayList.get(latestCat-1).getDog_friendly());
-                weightTextView.setText(catsArrayList.get(latestCat-1).getWeight().getMetric());
-                lifespanTextView.setText(catsArrayList.get(latestCat-1).getLife_span());
-                descriptionTextView.setText(catsArrayList.get(latestCat-1).getDescription());
+                nameTextView.setText(currentCat.getName());
+                temperamentTextView.setText(currentCat.getTemperament());
+                wikiTextView.setText(currentCat.getWikipedia_url());
+                originTextView.setText(currentCat.getOrigin());
+                dogfriendlyTextView.setText(currentCat.getDog_friendly());
+                weightTextView.setText(currentCat.getWeight().getMetric());
+                lifespanTextView.setText(currentCat.getLife_span());
+                descriptionTextView.setText(currentCat.getDescription());
 
 
 
 
-                //error when it's american bobtail, american curl, american shorthair
+                
 
 
             }

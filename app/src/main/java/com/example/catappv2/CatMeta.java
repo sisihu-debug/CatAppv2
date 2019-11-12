@@ -5,17 +5,17 @@ import java.util.ArrayList;
 public class CatMeta {
 
     public CatMeta(CatMeta results){
-        this.cats = cats;
+        this.breeds = breeds;
     }
 
-    private ArrayList<Cat> cats;
+    private ArrayList<Cat> breeds;
 
     public ArrayList<Cat> getCats() {
-        return cats;
+        return breeds;
     }
 
-    public void setCats(ArrayList<Cat> cats) {
-        this.cats = cats;
+    public void setBreeds(ArrayList<Cat> cats) {
+        this.breeds = breeds;
     }
 
 }
