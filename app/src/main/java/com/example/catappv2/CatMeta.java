@@ -9,6 +9,7 @@ public class CatMeta {
     }
 
     private ArrayList<Cat> breeds;
+    private String url;
 
     public ArrayList<Cat> getCats() {
         return breeds;
@@ -17,5 +18,10 @@ public class CatMeta {
     public void setBreeds(ArrayList<Cat> cats) {
         this.breeds = breeds;
     }
+
+    public String getUrl() {
+        return url;
+    }
+
 
 }

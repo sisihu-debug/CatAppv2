@@ -1,5 +1,6 @@
 package com.example.catappv2;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -14,6 +15,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -33,11 +35,15 @@ public class CatDetailActivity extends AppCompatActivity {
     private ImageView detailPhotoImageView;
     private Button addToFavButton;
 
+    Context context;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cat_detail);
+
+        context = this;
 
         nameTextView = findViewById(R.id.detailName);
         temperamentTextView = findViewById(R.id.detailTemperament);
@@ -49,6 +55,8 @@ public class CatDetailActivity extends AppCompatActivity {
         descriptionTextView = findViewById(R.id.detailDescription);
         addToFavButton = findViewById(R.id.favButton);
         detailPhotoImageView = findViewById(R.id.detailPhoto);
+
+
 
 
         Intent intent = getIntent();
@@ -73,6 +81,8 @@ public class CatDetailActivity extends AppCompatActivity {
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+
+
                 Gson gson = new Gson();
 
 
@@ -93,6 +103,7 @@ public class CatDetailActivity extends AppCompatActivity {
                 System.out.println(currentCat.getTemperament());
 
                 nameTextView.setText(currentCat.getName());
+                Glide.with(context).load(currentCatMeta.getUrl()).into(detailPhotoImageView);
                 temperamentTextView.setText(currentCat.getTemperament());
                 wikiTextView.setText(currentCat.getWikipedia_url());
                 originTextView.setText(currentCat.getOrigin());
@@ -101,10 +112,16 @@ public class CatDetailActivity extends AppCompatActivity {
                 lifespanTextView.setText(currentCat.getLife_span());
                 descriptionTextView.setText(currentCat.getDescription());
 
+//                String imageUrl = currentCat.getImageUrl();
+//                Glide.with(this).load(imageUrl).into(detailPhotoImageView);
 
 
 
-                
+
+
+
+
+
 
 
             }
