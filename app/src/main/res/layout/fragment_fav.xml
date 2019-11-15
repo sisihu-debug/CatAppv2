@@ -16,8 +16,12 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="FAVOURITE"
-            android:textSize="30sp" />
+            android:text="Favourites"
+            android:textSize="30sp"
+            android:layout_marginLeft="20dp"
+            android:textAlignment="center"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/colorPrimary"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

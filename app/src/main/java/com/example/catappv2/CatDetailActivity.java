@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -65,20 +66,14 @@ public class CatDetailActivity extends AppCompatActivity {
 
         final String catID = intent.getStringExtra("id");
 
-        System.out.println(catID);
 
         final RequestQueue requestQueue = Volley.newRequestQueue(this);
 
         String apiKey = "62b8eef7-c68c-4bd6-85bf-ee7ecfcff0c6";
-        //String url = "https://api.thecatapi.com/v1/breeds/search?api_key="+ apiKey + "&breed_id="+catID;
 
-        //String url = "https://api.thecatapi.com/v1/breeds/search?api_key=62b8eef7-c68c-4bd6-85bf-ee7ecfcff0c6&breed_id=beng;
 
         String url = "https://api.thecatapi.com/v1/images/search?api_key="+apiKey+"&breed_id="+catID;
-//
 
-        //working because searching directly quotes exact match
-        //String url = "https://api.thecatapi.com/v1/breeds/search?q=" + catID;
 
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             @Override
@@ -97,20 +92,13 @@ public class CatDetailActivity extends AppCompatActivity {
                 if(catsArrayList.size() ==0){
 
                     nameTextView.setText("Can't find information");
+                    addToFavButton.setVisibility(View.GONE);
 
                 } else{
                     CatMeta currentCatMeta = catsArrayList.get(0);
 
                     currentCat = currentCatMeta.getCats().get(0);
-
-
-
-                    int latestCat = catsArrayList.size();
-                    System.out.println("the size of the array is "+latestCat);
-
-                    System.out.println(currentCat.getName());
-                    System.out.println(currentCat.getTemperament());
-
+                    
                     nameTextView.setText(currentCat.getName());
                     Glide.with(context).load(currentCatMeta.getUrl()).into(detailPhotoImageView);
                     temperamentTextView.setText("Temperament: "+ currentCat.getTemperament());
@@ -120,21 +108,9 @@ public class CatDetailActivity extends AppCompatActivity {
                     weightTextView.setText("Weight: "+ currentCat.getWeight().getMetric());
                     lifespanTextView.setText("Lifespan: "+currentCat.getLife_span());
                     descriptionTextView.setText("Description: "+currentCat.getDescription());
+
+
                 }
-
-
-
-//                String imageUrl = currentCat.getImageUrl();
-//                Glide.with(this).load(imageUrl).into(detailPhotoImageView);
-
-
-
-
-
-
-
-
-
 
             }
 
@@ -157,8 +133,6 @@ public class CatDetailActivity extends AppCompatActivity {
         //setting up adding to favourites
 
 
-
-
         addToFavButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -166,6 +140,12 @@ public class CatDetailActivity extends AppCompatActivity {
 
 
                 FavCatsDatabase.addToFav( catID ,currentCat);
+                Context context = getApplicationContext();
+                CharSequence text = "Added to Favourites!";
+                int duration = Toast.LENGTH_SHORT;
+
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
 
 
             }

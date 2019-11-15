@@ -3,7 +3,7 @@ package com.example.catappv2;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -48,16 +48,12 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.FavViewHolder> {
     public static class FavViewHolder extends RecyclerView.ViewHolder{
         public View view;
         TextView nameTextView;
-//        ImageView photoImageView;
-
 
 
         public FavViewHolder(View view){
             super(view);
             this.view = view;
             nameTextView = view.findViewById(R.id.tv_name);
-//            photoImageView = view.findViewById(R.id.iv_photo);
-
 
         }
 

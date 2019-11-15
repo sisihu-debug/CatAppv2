@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
         Fragment fragment = new SearchFragment();
         swapFragment(fragment);
-        //Fragment favFragment = new FavFragment();
+
 
         bottomNavigationView = findViewById(R.id.nav_view);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -40,8 +40,6 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
-
-
 
 
     }

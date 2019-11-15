@@ -35,13 +35,10 @@ import java.util.List;
 public class SearchFragment extends Fragment {
 
     private RecyclerView recyclerView;
-    View view;
-    RecyclerView.LayoutManager layoutManager;
+
     EditText searchEditView;
 
     String searchText;
-
-
 
 
     public SearchFragment() {
@@ -52,8 +49,6 @@ public class SearchFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-
 
 
         // Inflate the layout for this fragment
@@ -94,29 +89,16 @@ public class SearchFragment extends Fragment {
 
                 final RequestQueue requestQueue =  Volley.newRequestQueue(view.getContext());
 
-//
                 String apiKey = "62b8eef7-c68c-4bd6-85bf-ee7ecfcff0c6";
                 String url = "https://api.thecatapi.com/v1/breeds/search?q="+searchText;
 
-                //String url = "https://api.thecatapi.com/v1/breeds/search?api_key="+ apiKey + "breed_id="+searchText;
+
 
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         Gson gson = new Gson();
 
-
-//              Attempt 1:
-
-//                CatMeta[] catMeta = gson.fromJson(response,CatMeta[].class);
-//
-//                List<CatMeta> catsList = Arrays.asList(catMeta);
-//
-//                ArrayList<Cat> catsArrayList = new ArrayList<Cat>(catsList);
-//
-//
-//
-//                catAdapter.setData();
 
                         Cat[] catMeta = gson.fromJson(response,Cat[].class);
 
@@ -145,80 +127,18 @@ public class SearchFragment extends Fragment {
 
 
 
-                //filter(s.toString());
+
 
 
             }
         });
 
 
-
-//
-//      create request queue
-
-//        final RequestQueue requestQueue =  Volley.newRequestQueue(getActivity());
-//
-////
-//
-//        String url = "https://api.thecatapi.com/v1/breeds/search?q="+searchText;
-//
-//        Response.Listener<String> responseListener = new Response.Listener<String>() {
-//            @Override
-//            public void onResponse(String response) {
-//                Gson gson = new Gson();
-//
-//
-////              Attempt 1:
-//
-////                CatMeta[] catMeta = gson.fromJson(response,CatMeta[].class);
-////
-////                List<CatMeta> catsList = Arrays.asList(catMeta);
-////
-////                ArrayList<Cat> catsArrayList = new ArrayList<Cat>(catsList);
-////
-////
-////
-////                catAdapter.setData();
-//
-//                Cat[] catMeta = gson.fromJson(response,Cat[].class);
-//
-//                List<Cat> catsList = Arrays.asList(catMeta);
-//
-//                ArrayList<Cat> catsArrayList = new ArrayList<Cat>(catsList);
-//
-//                catAdapter.setData(catsArrayList);
-//
-//                recyclerView.setAdapter(catAdapter);
-//
-//
-//            }
-//
-//            };
-//
-//        Response.ErrorListener errorListener = new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                System.out.println("GSON VOLLEY ERROR!!!");
-//            }
-//        };
-//
-//        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, responseListener, errorListener);
-//        requestQueue.add(stringRequest);
-//
         return view;
 
 
     }
 
-    public void filter(String text){
-
-
-
-
-
-
-
-    }
 
 
 

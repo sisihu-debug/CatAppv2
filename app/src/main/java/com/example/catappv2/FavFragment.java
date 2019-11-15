@@ -25,15 +25,6 @@ public class FavFragment extends Fragment {
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
     View view;
-    FavCatsDatabase favCatsDatabase;
-
-
-
-//    HashMap<Integer, Integer> favCats = new HashMap<>();
-//
-//    public static HashMap<Integer, Integer> getFavCats (HashMap <Integer, Integer> favCats){
-//        return favCats;
-//    }
 
 
     public FavFragment() {
@@ -60,11 +51,6 @@ public class FavFragment extends Fragment {
         recyclerView.setAdapter(favAdapter);
 
         return view;
-
-
-
-
-
 
 
     }
