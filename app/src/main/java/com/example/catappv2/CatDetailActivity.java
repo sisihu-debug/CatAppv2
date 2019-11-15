@@ -98,7 +98,7 @@ public class CatDetailActivity extends AppCompatActivity {
                     CatMeta currentCatMeta = catsArrayList.get(0);
 
                     currentCat = currentCatMeta.getCats().get(0);
-                    
+
                     nameTextView.setText(currentCat.getName());
                     Glide.with(context).load(currentCatMeta.getUrl()).into(detailPhotoImageView);
                     temperamentTextView.setText("Temperament: "+ currentCat.getTemperament());
