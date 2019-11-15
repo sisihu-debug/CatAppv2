@@ -3,6 +3,7 @@ package com.example.catappv2;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -35,6 +36,8 @@ public class CatDetailActivity extends AppCompatActivity {
     private ImageView detailPhotoImageView;
     private Button addToFavButton;
 
+    Cat currentCat;
+
     Context context;
 
 
@@ -58,10 +61,9 @@ public class CatDetailActivity extends AppCompatActivity {
 
 
 
-
         Intent intent = getIntent();
 
-        String catID = intent.getStringExtra("id");
+        final String catID = intent.getStringExtra("id");
 
         System.out.println(catID);
 
@@ -92,25 +94,35 @@ public class CatDetailActivity extends AppCompatActivity {
 
                 ArrayList<CatMeta> catsArrayList = new ArrayList<CatMeta>(catsList);
 
-                CatMeta currentCatMeta = catsArrayList.get(0);
+                if(catsArrayList.size() ==0){
 
-                Cat currentCat = currentCatMeta.getCats().get(0);
+                    nameTextView.setText("Can't find information");
 
-                int latestCat = catsArrayList.size();
-                System.out.println("the size of the array is "+latestCat);
+                } else{
+                    CatMeta currentCatMeta = catsArrayList.get(0);
 
-                System.out.println(currentCat.getName());
-                System.out.println(currentCat.getTemperament());
+                    Cat currentCat = currentCatMeta.getCats().get(0);
 
-                nameTextView.setText(currentCat.getName());
-                Glide.with(context).load(currentCatMeta.getUrl()).into(detailPhotoImageView);
-                temperamentTextView.setText(currentCat.getTemperament());
-                wikiTextView.setText(currentCat.getWikipedia_url());
-                originTextView.setText(currentCat.getOrigin());
-                dogfriendlyTextView.setText(currentCat.getDog_friendly());
-                weightTextView.setText(currentCat.getWeight().getMetric());
-                lifespanTextView.setText(currentCat.getLife_span());
-                descriptionTextView.setText(currentCat.getDescription());
+
+
+                    int latestCat = catsArrayList.size();
+                    System.out.println("the size of the array is "+latestCat);
+
+                    System.out.println(currentCat.getName());
+                    System.out.println(currentCat.getTemperament());
+
+                    nameTextView.setText(currentCat.getName());
+                    Glide.with(context).load(currentCatMeta.getUrl()).into(detailPhotoImageView);
+                    temperamentTextView.setText(currentCat.getTemperament());
+                    wikiTextView.setText(currentCat.getWikipedia_url());
+                    originTextView.setText(currentCat.getOrigin());
+                    dogfriendlyTextView.setText(currentCat.getDog_friendly());
+                    weightTextView.setText(currentCat.getWeight().getMetric());
+                    lifespanTextView.setText(currentCat.getLife_span());
+                    descriptionTextView.setText(currentCat.getDescription());
+                }
+
+
 
 //                String imageUrl = currentCat.getImageUrl();
 //                Glide.with(this).load(imageUrl).into(detailPhotoImageView);
@@ -140,5 +152,26 @@ public class CatDetailActivity extends AppCompatActivity {
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, responseListener, errorListener);
         requestQueue.add(stringRequest);
+
+
+        //setting up adding to favourites
+
+
+
+
+        addToFavButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+
+                FavCatsDatabase.addToFav( catID ,currentCat);
+
+
+            }
+        });
+
     }
+
+
 }
