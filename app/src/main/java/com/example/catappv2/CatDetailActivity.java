@@ -101,7 +101,7 @@ public class CatDetailActivity extends AppCompatActivity {
                 } else{
                     CatMeta currentCatMeta = catsArrayList.get(0);
 
-                    Cat currentCat = currentCatMeta.getCats().get(0);
+                    currentCat = currentCatMeta.getCats().get(0);
 
 
 
@@ -113,13 +113,13 @@ public class CatDetailActivity extends AppCompatActivity {
 
                     nameTextView.setText(currentCat.getName());
                     Glide.with(context).load(currentCatMeta.getUrl()).into(detailPhotoImageView);
-                    temperamentTextView.setText(currentCat.getTemperament());
-                    wikiTextView.setText(currentCat.getWikipedia_url());
-                    originTextView.setText(currentCat.getOrigin());
-                    dogfriendlyTextView.setText(currentCat.getDog_friendly());
-                    weightTextView.setText(currentCat.getWeight().getMetric());
-                    lifespanTextView.setText(currentCat.getLife_span());
-                    descriptionTextView.setText(currentCat.getDescription());
+                    temperamentTextView.setText("Temperament: "+ currentCat.getTemperament());
+                    wikiTextView.setText("Wikipedia Link: "+ currentCat.getWikipedia_url());
+                    originTextView.setText("Origin: "+currentCat.getOrigin());
+                    dogfriendlyTextView.setText("Dog Friendliness: "+currentCat.getDog_friendly());
+                    weightTextView.setText("Weight: "+ currentCat.getWeight().getMetric());
+                    lifespanTextView.setText("Lifespan: "+currentCat.getLife_span());
+                    descriptionTextView.setText("Description: "+currentCat.getDescription());
                 }
 
 

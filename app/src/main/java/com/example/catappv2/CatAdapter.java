@@ -2,6 +2,7 @@ package com.example.catappv2;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,9 @@ import com.bumptech.glide.Glide;
 import com.example.catappv2.Cat;
 
 public class CatAdapter extends RecyclerView.Adapter<CatAdapter.CatViewHolder> {
+
+    ImageView photoImageView;
+    Context context;
 
     List<Cat> catsToAdapt = new ArrayList<>();
 
@@ -43,6 +47,8 @@ public class CatAdapter extends RecyclerView.Adapter<CatAdapter.CatViewHolder> {
         final Cat catAtPosition = catsToAdapt.get(position);
 
         holder.nameTextView.setText(catAtPosition.getName());
+//        //holder.photoImageView.setImageResource(catAtPosition.getImageUrl());
+//        Glide.with(context).load(catAtPosition.getImageUrl()).into(holder.photoImageView);
 
         //setting image
 
@@ -98,7 +104,7 @@ public class CatAdapter extends RecyclerView.Adapter<CatAdapter.CatViewHolder> {
             super(view);
             this.view = view;
             nameTextView = view.findViewById(R.id.tv_name);
-            photoImageView = view.findViewById(R.id.iv_photo);
+            //photoImageView = view.findViewById(R.id.iv_photo);
 
 
 

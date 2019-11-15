@@ -13,7 +13,7 @@ public class FavCatsDatabase {
         return favCats;
     }
 
-    public static Cat value;
+
 
     public static void addToFav(String catID, Cat cat){
         if (favCats.containsKey(catID)){
@@ -35,32 +35,37 @@ public class FavCatsDatabase {
         Iterator catsIterator = favCats.entrySet().iterator();
 
 
+        //attempt 1: borger kong method
 
-//        while (catsIterator.hasNext()) {
-//            Map.Entry<String, Cat> cat = (Map.Entry) catsIterator.next();
-//
-//            System.out.println(favCats.size());
-//
-//            favCatsArrayList.add(cat.getValue().getName());
-//
-//            //Cat displaycat = Cat.class. cat.getKey()
-//
-//        }
+        while (catsIterator.hasNext()) {
+            Map.Entry<String, Cat> cat = (Map.Entry) catsIterator.next();
+
+            System.out.println(favCats.size());
+
+            favCatsArrayList.add(cat.getValue().getName());
+
+            //Cat displaycat = Cat.class. cat.getKey()
+
+        }
 
         //Map<String, Object> catMap = new HashMap<>();
 
-        for (Map.Entry<String, Cat> entry : favCats.entrySet()) {
-            String key = entry.getKey();
-            System.out.println(key);
-            value = entry.getValue();
+        //attempt 2: internet different for loop
+//        for (Map.Entry<String, Cat> entry : favCats.entrySet()) {
+//            String key = entry.getKey();
+//            System.out.println(key);
+//            value = entry.getValue();
+//
+//
+//            System.out.println(value.getName());
+//
+//            //favCatsArrayList.add(value.getName());
+//
+//
+//
+//        }
 
-            System.out.println(value.getName());
-
-            //favCatsArrayList.add(value.getName());
-
-
-
-        }
+        //attempt 3: pass object
 
 
         return favCatsArrayList;
